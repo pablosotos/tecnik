@@ -7,6 +7,11 @@
   let bannerElement;
   let modalElement;
   let analyticsToggle;
+  let consentRequired = false;
+
+  function setBodyLock(locked) {
+    document.body.classList.toggle('cookie-consent-locked', locked);
+  }
 
   function safeParse(value) {
     try {
@@ -48,18 +53,26 @@
     if (!bannerElement) return;
     bannerElement.classList.remove('is-visible');
     bannerElement.setAttribute('aria-hidden', 'true');
+    if (!consentRequired) {
+      setBodyLock(false);
+    }
   }
 
   function showBanner() {
     if (!bannerElement) return;
     bannerElement.classList.add('is-visible');
     bannerElement.setAttribute('aria-hidden', 'false');
+    if (consentRequired) {
+      setBodyLock(true);
+    }
   }
 
   function hideModal() {
+    if (consentRequired) return;
     if (!modalElement) return;
     modalElement.classList.remove('is-visible');
     modalElement.setAttribute('aria-hidden', 'true');
+    setBodyLock(false);
   }
 
   function showModal() {
@@ -70,6 +83,7 @@
     }
     modalElement.classList.add('is-visible');
     modalElement.setAttribute('aria-hidden', 'false');
+    setBodyLock(true);
   }
 
   function loadAnalytics() {
@@ -107,18 +121,20 @@
 
     hideBanner();
     hideModal();
+    setBodyLock(false);
   }
 
   function createBanner() {
     const banner = document.createElement('section');
-    banner.className = 'cookie-banner';
+    banner.className = 'cookie-banner cookie-banner--centered';
     banner.setAttribute('aria-hidden', 'true');
     banner.setAttribute('role', 'region');
     banner.setAttribute('aria-label', 'Aviso de cookies');
     banner.innerHTML = `
-      <div class="cookie-banner__inner">
+      <div class="cookie-banner__overlay"></div>
+      <div class="cookie-banner__inner" role="dialog" aria-modal="true" aria-labelledby="cookie-banner-title">
         <div class="cookie-banner__text">
-          <h2>Usamos cookies</h2>
+          <h2 id="cookie-banner-title">Usamos cookies</h2>
           <p>
             Usamos cookies propias y de terceros para analizar el tráfico de nuestra web.
             Puedes aceptarlas o configurarlas según tus preferencias.
@@ -184,7 +200,10 @@
       </div>
     `;
 
-    modal.querySelector('[data-close-settings]')?.addEventListener('click', hideModal);
+    modal.querySelector('[data-close-settings]')?.addEventListener('click', () => {
+      if (consentRequired) return;
+      hideModal();
+    });
     modal.querySelector('[data-save-settings]')?.addEventListener('click', () => {
       const isChecked = analyticsToggle instanceof HTMLInputElement && analyticsToggle.checked;
       savePreferences(isChecked);
@@ -202,6 +221,7 @@
 
     const storedConsent = readStoredConsent();
     if (!storedConsent) {
+      consentRequired = true;
       showBanner();
       return;
     }
@@ -212,8 +232,9 @@
   }
 
   window.openCookieSettings = function openCookieSettings() {
+    consentRequired = false;
+    hideBanner();
     showModal();
-    showBanner();
   };
 
   if (document.readyState === 'loading') {

@@ -4,6 +4,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = 'Tecnik | Consultoría tecnológica para pequeños negocios';
 const pageDescription =
   'Consultoría tecnológica en Elche. Webs, tiendas online, automatizaciones con IA. Trato directo y precios claros.';
+
+const testimonials = [
+  {
+    text: 'En una semana teníamos web nueva y empezaron a entrar contactos desde Google.',
+    author: 'Laura M.',
+    role: 'Clínica estética, Elche'
+  },
+  {
+    text: 'Automatizamos respuestas y ahora atendemos clientes sin estar pegados al móvil todo el día.',
+    author: 'Carlos R.',
+    role: 'Tienda de deporte'
+  },
+  {
+    text: 'Nos explicó todo claro, sin tecnicismos. Sabíamos precio y plazos desde el primer día.',
+    author: 'Marta P.',
+    role: 'Centro de fisioterapia'
+  },
+  {
+    text: 'Pasamos de cero presencia online a recibir solicitudes cada semana desde la web.',
+    author: 'David S.',
+    role: 'Reformas integrales'
+  },
+  {
+    text: 'La automatización de presupuestos nos ahorra horas todas las semanas.',
+    author: 'Ana V.',
+    role: 'Estudio de interiorismo'
+  },
+  {
+    text: 'Mejoramos tiempos de respuesta y la sensación de profesionalidad con una web mucho más moderna.',
+    author: 'Sergio T.',
+    role: 'Asesoría local'
+  },
+  {
+    text: 'Nos propuso solo lo que necesitábamos. Sin vender humo y con resultados rápidos.',
+    author: 'Patricia G.',
+    role: 'Negocio familiar'
+  }
+];
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -83,6 +121,25 @@ const pageDescription =
           <article class="card service-card"><h3>🗄️ CRM para autónomos</h3><p>Gestiona tus clientes y seguimientos sin Excel ni post-its.</p><strong>Desde 300€</strong></article>
           <article class="card service-card"><h3>🔧 Mantenimiento</h3><p>Tu web siempre actualizada y funcionando.</p><strong>Desde 30€/mes</strong></article>
           <article class="card service-card"><h3>🧠 Modernización con IA</h3><p>Incorpora inteligencia artificial a tu negocio: atiende clientes automáticamente, genera contenido, analiza datos y toma mejores decisiones.</p><strong>Desde 400€</strong></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Opiniones -->
+    <section class="section reveal testimonials-section" aria-labelledby="opiniones-title">
+      <div class="container">
+        <h2 id="opiniones-title">Lo que dicen clientes como tú</h2>
+        <p class="section-subtitle">Opiniones de negocios locales que han modernizado su operativa con Tecnik.</p>
+        <div class="testimonials-carousel" data-carousel>
+          <div class="testimonials-track" data-carousel-track>
+            {testimonials.map((testimonial) => (
+              <article class="testimonial-card" data-carousel-item>
+                <p class="testimonial-quote">"{testimonial.text}"</p>
+                <p class="testimonial-author">{testimonial.author}</p>
+                <p class="testimonial-role">{testimonial.role}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -281,6 +338,70 @@ const pageDescription =
     );
 
     document.querySelectorAll('.reveal').forEach((section) => observer.observe(section));
+
+    const carousel = document.querySelector('[data-carousel]');
+    const carouselTrack = document.querySelector('[data-carousel-track]');
+    const carouselItems = Array.from(document.querySelectorAll('[data-carousel-item]'));
+
+    if (carousel instanceof HTMLElement && carouselTrack instanceof HTMLElement && carouselItems.length > 1) {
+      let currentIndex = 0;
+      let intervalId;
+      let isPaused = false;
+
+      const getScrollDistance = () => {
+        const firstCard = carouselItems[0];
+        const secondCard = carouselItems[1];
+        if (!(firstCard instanceof HTMLElement)) return 0;
+        if (!(secondCard instanceof HTMLElement)) return firstCard.offsetWidth;
+        return Math.abs(secondCard.offsetLeft - firstCard.offsetLeft);
+      };
+
+      const goToIndex = (index, behavior = 'smooth') => {
+        const clamped = Math.max(0, Math.min(index, carouselItems.length - 1));
+        const distance = getScrollDistance();
+        currentIndex = clamped;
+        carouselTrack.scrollTo({
+          left: distance * clamped,
+          behavior
+        });
+      };
+
+      const startAutoPlay = () => {
+        if (intervalId) clearInterval(intervalId);
+        intervalId = window.setInterval(() => {
+          if (isPaused) return;
+          const nextIndex = (currentIndex + 1) % carouselItems.length;
+          goToIndex(nextIndex);
+        }, 4200);
+      };
+
+      const syncCurrentIndex = () => {
+        const distance = getScrollDistance();
+        if (distance <= 0) return;
+        currentIndex = Math.round(carouselTrack.scrollLeft / distance);
+      };
+
+      const pause = () => {
+        isPaused = true;
+      };
+
+      const resume = () => {
+        isPaused = false;
+      };
+
+      carousel.addEventListener('mouseenter', pause);
+      carousel.addEventListener('mouseleave', resume);
+      carousel.addEventListener('focusin', pause);
+      carousel.addEventListener('focusout', resume);
+      carouselTrack.addEventListener('touchstart', pause, { passive: true });
+      carouselTrack.addEventListener('touchend', resume, { passive: true });
+      carouselTrack.addEventListener('pointerdown', pause);
+      carouselTrack.addEventListener('pointerup', resume);
+      carouselTrack.addEventListener('scroll', syncCurrentIndex, { passive: true });
+      window.addEventListener('resize', () => goToIndex(currentIndex, 'auto'));
+
+      startAutoPlay();
+    }
 
     const contactForm = document.querySelector('.contact-form');
 
