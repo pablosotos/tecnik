@@ -23,9 +23,34 @@ const { title, description } = Astro.props;
     <meta property="og:image" content="/og-image.jpg" />
     <meta name="theme-color" content="#0f3460" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/cookie-consent.css" />
+    <script src="/cookie-consent.js" defer></script>
     <title>{title}</title>
   </head>
   <body>
     <slot />
+    <button
+      type="button"
+      class="cookie-manage-link"
+      onclick="window.openCookieSettings && window.openCookieSettings()"
+    >
+      Gestionar cookies
+    </button>
   </body>
 </html>
+
+<style>
+  .cookie-manage-link {
+    position: fixed;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    z-index: 990;
+    border: 0;
+    background: transparent;
+    color: #0f3460;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0.2rem 0.3rem;
+  }
+</style>
