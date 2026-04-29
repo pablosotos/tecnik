@@ -76,42 +76,49 @@ export async function onRequestPost(context) {
 
     const accessToken = tokenJson.access_token;
 
-    const accountsUrl = 'https://mail.zoho.eu/api/accounts';
-    const accountsRes = await fetch(accountsUrl, {
-      method: 'GET',
-      headers: {
-        Authorization: `Zoho-oauthtoken ${accessToken}`
-      }
-    });
+    const explicitAccountId = typeof env.ZOHO_ACCOUNT_ID === 'string' ? env.ZOHO_ACCOUNT_ID.trim() : '';
+    let accountId = '';
+    let accountsDataJson = null;
 
-    const accountsText = await accountsRes.text().catch(() => '');
-    let accountsJson = null;
-    try {
-      accountsJson = accountsText ? JSON.parse(accountsText) : null;
-    } catch {
-      accountsJson = null;
-    }
-
-    if (!accountsRes.ok || !accountsJson) {
-      const snippet = accountsText ? accountsText.slice(0, 500) : '';
-      const zohoError =
-        accountsJson && typeof accountsJson.error === 'string'
-          ? accountsJson.error
-          : snippet || 'Zoho accounts error';
-
-      const msg = `Zoho accounts error (${accountsRes.status} ${accountsRes.statusText || 'HTTP'}): ${zohoError}`;
-      return new Response(JSON.stringify({ error: msg }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' }
+    // Optional override to avoid /api/accounts call (useful when scopes/permissions are limited).
+    if (explicitAccountId) {
+      accountId = explicitAccountId;
+    } else {
+      const accountsUrl = 'https://mail.zoho.eu/api/accounts';
+      const accountsRes = await fetch(accountsUrl, {
+        method: 'GET',
+        headers: {
+          Authorization: `Zoho-oauthtoken ${accessToken}`
+        }
       });
+
+      const accountsText = await accountsRes.text().catch(() => '');
+      try {
+        accountsDataJson = accountsText ? JSON.parse(accountsText) : null;
+      } catch {
+        accountsDataJson = null;
+      }
+
+      if (!accountsRes.ok || !accountsDataJson) {
+        const snippet = accountsText ? accountsText.slice(0, 800) : '';
+        const msg = `Zoho accounts error (${accountsRes.status} ${accountsRes.statusText || 'HTTP'}): ${snippet || 'Empty response'}`;
+        return new Response(JSON.stringify({ error: msg }), {
+          status: 500,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
+
+      // Zoho EU real structure:
+      // { status: { code: 200 }, data: [ { accountId: '...' } ] }
+      accountId = accountsDataJson?.data?.[0]?.accountId || '';
+
+      if (!accountId) {
+        // eslint-disable-next-line no-console
+        console.log('Zoho /api/accounts body (accountId null):', accountsDataJson);
+      }
     }
 
-    const accountId =
-      (Array.isArray(accountsJson?.accounts) && accountsJson.accounts[0] && accountsJson.accounts[0].accountId) ||
-      (typeof accountsJson?.accountId === 'string' && accountsJson.accountId) ||
-      (Array.isArray(accountsJson) && accountsJson[0] && accountsJson[0].accountId);
-
-    if (typeof accountId !== 'string' || !accountId) {
+    if (typeof accountId !== 'string' || !accountId.trim()) {
       return new Response(JSON.stringify({ error: 'Zoho accountId not found' }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
