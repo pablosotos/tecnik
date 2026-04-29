@@ -1,4 +1,4 @@
-export default async function handler(context) {
+export async function onRequestPost(context) {
   const { request } = context;
   const env = context.env;
 
@@ -142,5 +142,12 @@ export default async function handler(context) {
       headers: { 'Content-Type': 'application/json' }
     });
   }
+}
+
+export async function onRequest(context) {
+  return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+    status: 405,
+    headers: { 'Content-Type': 'application/json' }
+  });
 }
 
