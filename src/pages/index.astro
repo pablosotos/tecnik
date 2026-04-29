@@ -488,28 +488,26 @@ const testimonials = [
           body: JSON.stringify(payload)
         })
           .then(async (res) => {
+            const status = res.status;
+            const text = await res.text().catch(() => '');
+
             let data = null;
             try {
-              data = await res.json();
+              data = text ? JSON.parse(text) : null;
             } catch {
               data = null;
             }
 
             if (res.ok && data && data.success) return;
 
-            let serverError =
-              data && typeof data.error === 'string' ? data.error : undefined;
+            const serverError =
+              data && typeof data.error === 'string'
+                ? data.error
+                : text
+                  ? text.slice(0, 200)
+                  : 'No se pudo enviar.';
 
-            if (!serverError) {
-              try {
-                const text = await res.text();
-                serverError = text ? text.slice(0, 200) : 'No se pudo enviar.';
-              } catch {
-                serverError = 'No se pudo enviar.';
-              }
-            }
-
-            throw new Error(`(${res.status}) ${serverError}`);
+            throw new Error(`(${status}) ${serverError}`);
           })
           .then(() => {
             if (!(statusNode instanceof HTMLElement)) return;

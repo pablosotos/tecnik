@@ -53,9 +53,21 @@ export async function onRequestPost(context) {
       body: tokenForm.toString()
     });
 
-    const tokenJson = await tokenRes.json().catch(() => null);
+    const tokenText = await tokenRes.text().catch(() => '');
+    let tokenJson = null;
+    try {
+      tokenJson = tokenText ? JSON.parse(tokenText) : null;
+    } catch {
+      tokenJson = null;
+    }
+
     if (!tokenRes.ok || !tokenJson || typeof tokenJson.access_token !== 'string') {
-      const msg = tokenJson && typeof tokenJson.error === 'string' ? tokenJson.error : 'Zoho token error';
+      const msg =
+        tokenJson && typeof tokenJson.error === 'string'
+          ? tokenJson.error
+          : tokenText
+            ? tokenText.slice(0, 200)
+            : 'Zoho token error';
       return new Response(JSON.stringify({ error: msg }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
@@ -72,12 +84,21 @@ export async function onRequestPost(context) {
       }
     });
 
-    const accountsJson = await accountsRes.json().catch(() => null);
+    const accountsText = await accountsRes.text().catch(() => '');
+    let accountsJson = null;
+    try {
+      accountsJson = accountsText ? JSON.parse(accountsText) : null;
+    } catch {
+      accountsJson = null;
+    }
+
     if (!accountsRes.ok || !accountsJson) {
       const msg =
         accountsJson && typeof accountsJson.error === 'string'
           ? accountsJson.error
-          : 'Zoho accounts error';
+          : accountsText
+            ? accountsText.slice(0, 200)
+            : 'Zoho accounts error';
       return new Response(JSON.stringify({ error: msg }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
@@ -120,12 +141,21 @@ export async function onRequestPost(context) {
       body: JSON.stringify(messagePayload)
     });
 
-    const mailJson = await mailRes.json().catch(() => null);
+    const mailText = await mailRes.text().catch(() => '');
+    let mailJson = null;
+    try {
+      mailJson = mailText ? JSON.parse(mailText) : null;
+    } catch {
+      mailJson = null;
+    }
+
     if (!mailRes.ok) {
       const msg =
         mailJson && typeof mailJson.error === 'string'
           ? mailJson.error
-          : 'Zoho send message error';
+          : mailText
+            ? mailText.slice(0, 200)
+            : 'Zoho send message error';
       return new Response(JSON.stringify({ error: msg }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
