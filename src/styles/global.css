@@ -414,6 +414,20 @@ h2 {
   line-height: 1.25;
 }
 
+.contact-status {
+  margin: 0.2rem 0 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.contact-status--success {
+  color: #1f7a33;
+}
+
+.contact-status--error {
+  color: #d64545;
+}
+
 .hidden-field {
   display: none;
 }

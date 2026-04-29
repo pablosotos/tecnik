@@ -263,6 +263,8 @@ const testimonials = [
             novalidate
           >
             <input type="hidden" name="form-name" value="contacto" />
+            <input type="hidden" name="subject" value="Alguien quiere más información" />
+            <input type="hidden" name="to" value="hola@tecnik.studio" />
             <input type="hidden" name="_timestamp" id="form-timestamp" />
             <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" />
             <p class="hidden-field">
@@ -296,6 +298,8 @@ const testimonials = [
             <label for="mensaje">Mensaje</label>
             <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
             <p id="mensaje-error" class="field-error" aria-live="polite"></p>
+
+            <p id="contact-status" class="contact-status" aria-live="polite"></p>
 
             <button class="btn btn-primary" type="submit">Enviar mensaje</button>
           </form>
@@ -409,33 +413,40 @@ const testimonials = [
       const minSubmitDelayMs = 3000;
       const nombreInput = contactForm.querySelector('#nombre');
       const emailInput = contactForm.querySelector('#email');
+      const telefonoInput = contactForm.querySelector('#telefono');
+      const servicioInput = contactForm.querySelector('#servicio');
       const mensajeInput = contactForm.querySelector('#mensaje');
       const honeypotInput = contactForm.querySelector('input[name="_honeypot"]');
       const timestampInput = contactForm.querySelector('#form-timestamp');
       const nombreError = contactForm.querySelector('#nombre-error');
       const emailError = contactForm.querySelector('#email-error');
       const mensajeError = contactForm.querySelector('#mensaje-error');
+      const statusNode = contactForm.querySelector('#contact-status');
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
       contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
         const clearErrors = [nombreError, emailError, mensajeError];
         clearErrors.forEach((errorNode) => {
           if (errorNode instanceof HTMLElement) errorNode.textContent = '';
         });
 
+        if (statusNode instanceof HTMLElement) {
+          statusNode.textContent = '';
+          statusNode.classList.remove('contact-status--success', 'contact-status--error');
+        }
+
         if (honeypotInput instanceof HTMLInputElement && honeypotInput.value.trim() !== '') {
-          event.preventDefault();
           return;
         }
 
         if (!(timestampInput instanceof HTMLInputElement)) {
-          event.preventDefault();
           return;
         }
 
         const startedAt = Number(timestampInput.value || 0);
         if (!Number.isFinite(startedAt) || Date.now() - startedAt < minSubmitDelayMs) {
-          event.preventDefault();
           return;
         }
 
@@ -456,9 +467,43 @@ const testimonials = [
           hasError = true;
         }
 
-        if (hasError) {
-          event.preventDefault();
+        if (hasError) return;
+
+        const payload = {
+          nombre: nombreInput instanceof HTMLInputElement ? nombreInput.value.trim() : '',
+          email: emailInput instanceof HTMLInputElement ? emailInput.value.trim() : '',
+          telefono: telefonoInput instanceof HTMLInputElement ? telefonoInput.value.trim() : '',
+          servicio: servicioInput instanceof HTMLSelectElement ? servicioInput.value : '',
+          mensaje: mensajeInput instanceof HTMLTextAreaElement ? mensajeInput.value.trim() : ''
+        };
+
+        if (statusNode instanceof HTMLElement) {
+          statusNode.textContent = 'Enviando...';
+          statusNode.classList.remove('contact-status--success', 'contact-status--error');
         }
+
+        fetch('/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(async (res) => {
+            const data = await res.json().catch(() => null);
+            if (res.ok && data && data.success) return;
+
+            const serverError = data && typeof data.error === 'string' ? data.error : 'No se pudo enviar.';
+            throw new Error(serverError);
+          })
+          .then(() => {
+            if (!(statusNode instanceof HTMLElement)) return;
+            statusNode.textContent = 'Mensaje enviado correctamente. Gracias por contactar con Tecnik.';
+            statusNode.classList.add('contact-status--success');
+          })
+          .catch((err) => {
+            if (!(statusNode instanceof HTMLElement)) return;
+            statusNode.textContent = `Error al enviar el mensaje: ${err?.message || 'Inténtalo de nuevo.'}`;
+            statusNode.classList.add('contact-status--error');
+          });
       });
     }
   </script>
