@@ -93,12 +93,13 @@ export async function onRequestPost(context) {
     }
 
     if (!accountsRes.ok || !accountsJson) {
-      const msg =
+      const snippet = accountsText ? accountsText.slice(0, 500) : '';
+      const zohoError =
         accountsJson && typeof accountsJson.error === 'string'
           ? accountsJson.error
-          : accountsText
-            ? accountsText.slice(0, 200)
-            : 'Zoho accounts error';
+          : snippet || 'Zoho accounts error';
+
+      const msg = `Zoho accounts error (${accountsRes.status} ${accountsRes.statusText || 'HTTP'}): ${zohoError}`;
       return new Response(JSON.stringify({ error: msg }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
