@@ -17,6 +17,14 @@ export async function onRequestPost(context) {
   }
 
   try {
+    const escapeHtml = (value) =>
+      String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+
     let body;
     const contentType = request.headers.get('content-type') || '';
     if (contentType.includes('application/json')) {
@@ -126,18 +134,41 @@ export async function onRequestPost(context) {
     }
 
     const mailUrl = `https://mail.zoho.eu/api/accounts/${accountId}/messages`;
-    const content =
-      `Nombre: ${nombre}\n` +
-      `Email: ${email}\n` +
-      `Teléfono: ${telefono}\n` +
-      `Servicio: ${servicio}\n` +
-      `Mensaje: ${mensaje}`;
+    const safeNombre = escapeHtml(nombre);
+    const safeEmail = escapeHtml(email);
+    const safeTelefono = escapeHtml(telefono);
+    const safeServicio = escapeHtml(servicio);
+    const safeMensaje = escapeHtml(mensaje);
+
+    const content = `
+      <div style="font-family: Arial, Helvetica, sans-serif; color:#152238; line-height:1.4;">
+        <h2 style="margin:0 0 16px; font-size:18px; color:#0f3460;">
+          Nuevo mensaje desde la web Tecnik
+        </h2>
+
+        <div style="border:1px solid rgba(15,52,96,0.15); border-radius:12px; padding:14px 16px; background:#ffffff;">
+          <div style="margin:6px 0;"><strong>Nombre:</strong> ${safeNombre}</div>
+          <div style="margin:6px 0;"><strong>Email:</strong> ${safeEmail}</div>
+          <div style="margin:6px 0;"><strong>Teléfono:</strong> ${safeTelefono || '-'}</div>
+          <div style="margin:6px 0;"><strong>Servicio:</strong> ${safeServicio || '-'}</div>
+          <div style="margin:12px 0 6px;"><strong>Mensaje:</strong></div>
+          <div style="white-space:pre-wrap; margin-top:6px; padding:12px; background:rgba(67,97,238,0.06); border-radius:10px;">
+            ${safeMensaje}
+          </div>
+        </div>
+
+        <div style="margin-top:14px; font-size:12px; color:rgba(21,34,56,0.7);">
+          Enviado automáticamente desde el formulario de contacto.
+        </div>
+      </div>
+    `.trim();
 
     const messagePayload = {
       fromAddress,
       toAddress,
       subject,
-      content
+      content,
+      mailFormat: 'html'
     };
 
     const mailRes = await fetch(mailUrl, {
