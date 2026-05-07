@@ -1,7 +1,7 @@
 (() => {
   const STORAGE_KEY = 'cookie_consent';
   const CONSENT_TTL_MS = 365 * 24 * 60 * 60 * 1000;
-  const GA4_ID = 'G-3GP9QMD6NF';
+  const GA4_ID = 'G-LXL6GYL74W';
 
   let gaInitialized = false;
   let bannerElement;
