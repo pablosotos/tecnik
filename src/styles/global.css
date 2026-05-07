@@ -440,6 +440,16 @@ h2 {
   height: fit-content;
 }
 
+.contact-info a {
+  color: var(--navy);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.contact-info a:hover {
+  color: var(--electric);
+}
+
 .footer {
   border-top: 1px solid rgba(15, 52, 96, 0.1);
   padding: 2.2rem 0;
@@ -459,6 +469,75 @@ h2 {
   color: var(--muted);
 }
 
+.whatsapp-float {
+  position: fixed;
+  right: 1rem;
+  bottom: 3.2rem;
+  z-index: 995;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #25d366;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: whatsapp-pulse 2.4s ease-in-out infinite;
+}
+
+.whatsapp-float svg {
+  width: 28px;
+  height: 28px;
+  fill: #ffffff;
+}
+
+.whatsapp-float-bubble {
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffffff;
+  color: var(--navy);
+  border: 1px solid rgba(15, 52, 96, 0.12);
+  border-radius: 14px;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.8rem;
+  line-height: 1.25;
+  white-space: nowrap;
+  box-shadow: 0 10px 24px rgba(15, 52, 96, 0.14);
+  opacity: 0.9;
+}
+
+.whatsapp-float-bubble::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  border-right: 1px solid rgba(15, 52, 96, 0.12);
+  border-bottom: 1px solid rgba(15, 52, 96, 0.12);
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+}
+
+@keyframes whatsapp-pulse {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.06);
+  }
+}
+
 /* Animacion de entrada */
 .reveal {
   opacity: 0;
@@ -472,6 +551,13 @@ h2 {
 }
 
 @media (min-width: 760px) {
+  .whatsapp-float {
+    right: 1.2rem;
+    bottom: 3.3rem;
+    width: 56px;
+    height: 56px;
+  }
+
   .nav-links {
     display: flex;
   }
@@ -531,9 +617,25 @@ h2 {
   }
 }
 
+@media (max-width: 759px) {
+  .contact-grid .contact-info {
+    order: -1;
+  }
+
+  .whatsapp-float-bubble {
+    display: none;
+  }
+}
+
 @media (min-width: 1080px) {
   .testimonial-card {
     flex-basis: 32%;
     max-width: 32%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float {
+    animation: none;
   }
 }
