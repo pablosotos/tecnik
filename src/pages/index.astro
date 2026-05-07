@@ -526,6 +526,13 @@ const testimonials = [
             throw new Error(`(${status}) ${serverError}`);
           })
           .then(() => {
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'generate_lead', {
+                event_category: 'engagement',
+                event_label: 'contact_form'
+              });
+            }
+
             if (!(statusNode instanceof HTMLElement)) return;
             statusNode.textContent = 'Mensaje enviado correctamente. Gracias por contactar con Tecnik.';
             statusNode.classList.add('contact-status--success');
