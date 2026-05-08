@@ -1,0 +1,71 @@
+<svg width="100%" viewBox="0 0 1210 736.14" xmlns="http://www.w3.org/2000/svg" role="img" style="">
+<title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Tecnik — OG Image Preview</title>
+<desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Open Graph image for tecnik.studio, 1200x630px</desc>
+
+
+
+<!-- Background -->
+<rect width="1200" height="630" fill="#0A0818" style="fill:rgb(10, 8, 24);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- Dot grid subtle pattern -->
+<defs>
+  <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+    <circle cx="20" cy="20" r="1" fill="#6366F1" opacity="0.18"/>
+  </pattern>
+<mask id="imagine-text-gaps-r4ydgu" maskUnits="userSpaceOnUse"><rect x="0" y="0" width="1210" height="736.14" fill="white"/><rect x="624.2136840820312" y="19.165679931640625" width="448.47607421875" height="708.466796875" fill="black" rx="2"/><rect x="92" y="177.24815368652344" width="333.8580322265625" height="131.41231536865234" fill="black" rx="2"/><rect x="94" y="299.44964599609375" width="142.66915893554688" height="29.48246192932129" fill="black" rx="2"/><rect x="94" y="382.1615905761719" width="638.896484375" height="33.59253692626953" fill="black" rx="2"/><rect x="146.5038604736328" y="451.3817138671875" width="108.99224090576172" height="23.72835922241211" fill="black" rx="2"/><rect x="940.3213500976562" y="207.77500915527344" width="135.87841033935547" height="208.6817169189453" fill="black" rx="2"/><rect x="94" y="545.2037353515625" width="261.20628356933594" height="22.084327697753906" fill="black" rx="2"/><rect x="544.727783203125" y="548.4918212890625" width="130.54444122314453" height="18.796268463134766" fill="black" rx="2"/><rect x="703.5726928710938" y="548.4918212890625" width="96.85467529296875" height="18.796268463134766" fill="black" rx="2"/><rect x="838.2047729492188" y="548.4918212890625" width="71.59056091308594" height="18.796268463134766" fill="black" rx="2"/></mask></defs>
+<rect width="1200" height="630" fill="url(#dots)" style="stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- Left accent bar -->
+<rect x="0" y="0" width="4" height="630" fill="#6366F1" style="fill:rgb(99, 102, 241);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- Top subtle line -->
+<line x1="0" y1="0" x2="1200" y2="0" stroke="#6366F1" stroke-width="0.5" stroke-opacity="0.3" style="fill:rgb(0, 0, 0);stroke:rgb(99, 102, 241);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- Large background T letter watermark -->
+<text x="820" y="590" font-family="'DM Serif Display', Georgia, serif" font-style="italic" font-size="620" fill="#6366F1" opacity="0.04" text-anchor="middle" style="fill:rgb(99, 102, 241);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.04;font-family:&quot;DM Serif Display&quot;, Georgia, serif;font-size:620px;font-weight:400;font-style:italic;text-anchor:middle;dominant-baseline:auto">T</text>
+
+<!-- Logo area -->
+<!-- Serif italic "Tecnik" -->
+<text x="96" y="282" font-family="'DM Serif Display', Georgia, serif" font-style="italic" font-size="112" fill="#FFFFFF" letter-spacing="-1" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;DM Serif Display&quot;, Georgia, serif;font-size:112px;font-weight:400;font-style:italic;text-anchor:start;dominant-baseline:auto">Tecnik</text>
+
+<!-- Accent dot after name -->
+<circle cx="622" cy="248" r="12" fill="#6366F1" style="fill:rgb(99, 102, 241);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- Studio label -->
+<text x="98" y="322" font-family="'Outfit', Helvetica, sans-serif" font-weight="300" font-size="22" fill="rgba(255,255,255,0.35)" letter-spacing="9" style="fill:rgba(255, 255, 255, 0.35);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Outfit, Helvetica, sans-serif;font-size:22px;font-weight:300;text-anchor:start;dominant-baseline:auto">STUDIO</text>
+
+<!-- Divider line -->
+<line x1="96" y1="358" x2="560" y2="358" stroke="#6366F1" stroke-width="0.5" stroke-opacity="0.4" style="fill:rgb(0, 0, 0);stroke:rgb(99, 102, 241);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- Tagline -->
+<text x="98" y="408" font-family="'Outfit', Helvetica, sans-serif" font-weight="400" font-size="26" fill="rgba(255,255,255,0.65)" letter-spacing="0.3" style="fill:rgba(255, 255, 255, 0.65);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Outfit, Helvetica, sans-serif;font-size:26px;font-weight:400;text-anchor:start;dominant-baseline:auto">Consultoría tecnológica e IA para pequeños negocios</text>
+
+<!-- URL chip -->
+<rect x="96" y="444" width="210" height="40" rx="8" fill="rgba(99,102,241,0.15)" stroke="#6366F1" stroke-width="0.5" stroke-opacity="0.5" style="fill:rgba(99, 102, 241, 0.15);stroke:rgb(99, 102, 241);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="201" y="469" font-family="'Outfit', Helvetica, sans-serif" font-weight="500" font-size="17" fill="rgba(180,182,255,0.9)" text-anchor="middle" letter-spacing="0.5" style="fill:rgba(180, 182, 255, 0.9);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Outfit, Helvetica, sans-serif;font-size:17px;font-weight:500;text-anchor:middle;dominant-baseline:auto">tecnik.studio</text>
+
+<!-- Right side icon mark -->
+<rect x="900" y="215" width="200" height="200" rx="28" fill="#0E1030" style="fill:rgb(14, 16, 48);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<rect x="900" y="215" width="200" height="200" rx="28" fill="none" stroke="#6366F1" stroke-width="1" stroke-opacity="0.25" style="fill:none;stroke:rgb(99, 102, 241);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- T inside icon box -->
+<text x="1000" y="375" font-family="'DM Serif Display', Georgia, serif" font-style="italic" font-size="180" fill="rgba(255,255,255,0.9)" text-anchor="middle" style="fill:rgba(255, 255, 255, 0.9);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;DM Serif Display&quot;, Georgia, serif;font-size:180px;font-weight:400;font-style:italic;text-anchor:middle;dominant-baseline:auto">T</text>
+
+<!-- Dot on the T icon -->
+<circle cx="1072" cy="340" r="16" fill="#6366F1" style="fill:rgb(99, 102, 241);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- Bottom info row -->
+<line x1="96" y1="528" x2="1104" y2="528" stroke="rgba(255,255,255,0.07)" stroke-width="0.5" mask="url(#imagine-text-gaps-r4ydgu)" style="fill:rgb(0, 0, 0);stroke:rgba(255, 255, 255, 0.07);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="98" y="562" font-family="'Outfit', Helvetica, sans-serif" font-weight="300" font-size="16" fill="rgba(255,255,255,0.25)" letter-spacing="1.5" style="fill:rgba(255, 255, 255, 0.25);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Outfit, Helvetica, sans-serif;font-size:16px;font-weight:300;text-anchor:start;dominant-baseline:auto">ELCHE · ALICANTE · ESPAÑA</text>
+
+<!-- Three service pills -->
+<rect x="540" y="540" width="140" height="34" rx="6" fill="rgba(99,102,241,0.1)" stroke="rgba(99,102,241,0.3)" stroke-width="0.5" style="fill:rgba(99, 102, 241, 0.1);stroke:rgba(99, 102, 241, 0.3);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="610" y="562" font-family="'Outfit', Helvetica, sans-serif" font-weight="400" font-size="13" fill="rgba(180,182,255,0.7)" text-anchor="middle" style="fill:rgba(180, 182, 255, 0.7);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Outfit, Helvetica, sans-serif;font-size:13px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Webs &amp; E-commerce</text>
+
+<rect x="692" y="540" width="120" height="34" rx="6" fill="rgba(99,102,241,0.1)" stroke="rgba(99,102,241,0.3)" stroke-width="0.5" style="fill:rgba(99, 102, 241, 0.1);stroke:rgba(99, 102, 241, 0.3);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="752" y="562" font-family="'Outfit', Helvetica, sans-serif" font-weight="400" font-size="13" fill="rgba(180,182,255,0.7)" text-anchor="middle" style="fill:rgba(180, 182, 255, 0.7);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Outfit, Helvetica, sans-serif;font-size:13px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Automatización</text>
+
+<rect x="824" y="540" width="100" height="34" rx="6" fill="rgba(99,102,241,0.1)" stroke="rgba(99,102,241,0.3)" stroke-width="0.5" style="fill:rgba(99, 102, 241, 0.1);stroke:rgba(99, 102, 241, 0.3);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="874" y="562" font-family="'Outfit', Helvetica, sans-serif" font-weight="400" font-size="13" fill="rgba(180,182,255,0.7)" text-anchor="middle" style="fill:rgba(180, 182, 255, 0.7);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Outfit, Helvetica, sans-serif;font-size:13px;font-weight:400;text-anchor:middle;dominant-baseline:auto">IA aplicada</text>
+
+</svg>
